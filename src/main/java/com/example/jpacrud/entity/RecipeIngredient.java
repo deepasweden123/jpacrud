@@ -1,12 +1,43 @@
 package com.example.jpacrud.entity;
 
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+import javax.persistence.*;
 import java.util.Objects;
 
 public class RecipeIngredient {
 
-    private Ingredient ingredient;
-    private double amount;
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator",
+            parameters = {
+                    @Parameter(
+                            name = "uuid_gen_strategy_class",
+                            value = "org.hibernate.id.uuid.CustomVersionOneStrategy"
+                    )
+            }
+    )
+    @Column(name = "id", updatable = false, nullable = false)
     private String id;
+
+    @ManyToOne(
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH},
+            fetch = FetchType.EAGER
+    )
+    private Ingredient ingredient;
+
+    private double amount;
+
+    //   private Measurement measurement;
+
+    @ManyToOne(
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH},
+            fetch = FetchType.EAGER
+    )
+    private Recipe recipe;
 
     public RecipeIngredient(Ingredient ingredient) {
         this.ingredient = ingredient;

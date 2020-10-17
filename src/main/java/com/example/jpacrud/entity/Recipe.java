@@ -1,17 +1,26 @@
 package com.example.jpacrud.entity;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
 public class Recipe {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer id;
     private String recipeName;
+    @OneToMany
     private List<RecipeIngredient> recipeIngredients;
-    private RecipeInstruction instruction;
-    private List<RecipeCategory>categories;
 
-}
+    @OneToOne
+    private RecipeInstruction instruction;
+
+    @OneToMany
+    private List<RecipeCategory> categories;
+
+
+
 
 
     /** Constructors **/
@@ -74,7 +83,7 @@ public class Recipe {
                 Objects.equals(categories, recipe.categories);
     }
 
-    @Override
+
 
 
     @Override
