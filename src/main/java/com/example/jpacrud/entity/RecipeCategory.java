@@ -1,7 +1,8 @@
 package com.example.jpacrud.entity;
 
+import javax.persistence.Entity;
 import java.util.Objects;
-
+@Entity
 public class RecipeCategory {
 
     private String id;

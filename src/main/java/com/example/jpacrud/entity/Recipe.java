@@ -3,7 +3,7 @@ package com.example.jpacrud.entity;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
-
+@Entity
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
