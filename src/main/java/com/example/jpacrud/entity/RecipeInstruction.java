@@ -31,7 +31,7 @@ public class RecipeInstruction {
         )
         @Column(name = "id", updatable = false, nullable = false)
         private String id;
-    private Object instructions;
+    private String instructions;
 
     @Override
     public boolean equals(Object o) {
